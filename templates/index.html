@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chlorophyll-a AI Model</title>
+</head>
+<body>
+    <h1>Chlorophyll-a AI Prediction</h1>
+    <form action="/run_model">
+        <button type="submit">Run Model & Generate Heatmap</button>
+    </form>
+    {% if image_generated %}
+    <h2>Prediction Result:</h2>
+    <img src="/static/plot.png" alt="Heatmap">
+    {% endif %}
+</body>
+</html>
