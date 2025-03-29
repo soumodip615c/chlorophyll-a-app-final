@@ -1,7 +1,45 @@
 # model_utils.py
 
-# (your imports remain the same)
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import ConvLSTM2D, Conv2D, BatchNormalization
 
+# ✅ Define helper functions first
+def generate_demo_data(shape=(10, 64, 64)):
+    data = np.random.rand(*shape)
+    data[data < 0.2] = np.nan
+    return data
+
+def load_and_preprocess(data):
+    mask = np.isnan(data)
+    data[mask] = np.nanmean(data)
+    scaler = MinMaxScaler()
+    data_scaled = scaler.fit_transform(data.reshape(-1, 1)).reshape(data.shape)
+    return data_scaled, scaler
+
+def create_sequences(data, time_steps=3):
+    X, y = [], []
+    for i in range(len(data) - time_steps):
+        X.append(data[i:i + time_steps])
+        y.append(data[i + time_steps])
+    X = np.array(X)[..., np.newaxis]
+    y = np.array(y)[..., np.newaxis]
+    return X, y
+
+def build_model(input_shape):
+    model = Sequential([
+        ConvLSTM2D(64, (3, 3), activation='relu', padding='same', return_sequences=True, input_shape=input_shape),
+        BatchNormalization(),
+        ConvLSTM2D(64, (3, 3), activation='relu', padding='same', return_sequences=False),
+        BatchNormalization(),
+        Conv2D(1, (1, 1), activation='sigmoid', padding='same')
+    ])
+    model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+    return model
+
+# ✅ Now use the above functions
 def run_prediction_and_plot():
     raw_data = generate_demo_data()
     data_scaled, scaler = load_and_preprocess(raw_data)
@@ -26,6 +64,3 @@ def run_prediction_and_plot():
     plt.tight_layout()
     plt.savefig("static/plot.png")
     plt.close()
-
-# Call during import so it's ready before request
-run_prediction_and_plot()
