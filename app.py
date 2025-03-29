@@ -5,8 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    run_prediction_and_plot()
-    return render_template('index.html')
+    return render_template('index.html')  # ❌ removed model run here
 
 @app.route('/run_model')
 def run_model():
