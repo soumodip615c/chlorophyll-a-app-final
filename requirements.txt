@@ -1,0 +1,4 @@
+flask
+tensorflow
+matplotlib
+scikit-learn
