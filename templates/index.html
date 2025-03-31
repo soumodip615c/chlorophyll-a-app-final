@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
     <title>Chlorophyll-a Prediction</title>
 </head>
 <body>
@@ -8,5 +9,18 @@
     <form action="/predict" method="post">
         <button type="submit">Run Prediction</button>
     </form>
+=======
+    <title>Chlorophyll-a AI Model</title>
+</head>
+<body>
+    <h1>Chlorophyll-a AI Prediction</h1>
+    <form action="/run_model">
+        <button type="submit">Run Model & Generate Heatmap</button>
+    </form>
+    {% if image_generated %}
+    <h2>Prediction Result:</h2>
+    <img src="/static/plot.png" alt="Heatmap">
+    {% endif %}
+>>>>>>> 6ac38f2314e9f8a5a913aa40390f45e134037478
 </body>
 </html>

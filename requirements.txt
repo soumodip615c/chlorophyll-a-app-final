@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 flask
 tensorflow
 matplotlib
+=======
+Flask
+gunicorn
+matplotlib
+numpy
+keras
+tensorflow
+>>>>>>> 6ac38f2314e9f8a5a913aa40390f45e134037478
 scikit-learn

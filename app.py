@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file, redirect, url_for
+from flask import Flask, render_template
 from model_utils import run_prediction_and_plot
 
 app = Flask(__name__)
@@ -14,3 +14,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
