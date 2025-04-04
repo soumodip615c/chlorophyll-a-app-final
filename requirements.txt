@@ -3,5 +3,5 @@ gunicorn
 matplotlib
 numpy
 keras
-tensorflow
+tensorflow-cpu
 scikit-learn
