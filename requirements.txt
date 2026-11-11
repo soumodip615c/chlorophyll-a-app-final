@@ -1,7 +1,0 @@
-Flask
-gunicorn
-matplotlib
-numpy
-keras
-tensorflow-cpu
-scikit-learn
